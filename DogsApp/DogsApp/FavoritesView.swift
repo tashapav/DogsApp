@@ -50,9 +50,13 @@ struct FavoritesView: View {
     
     private var logoutButton: some View {
         Button(action: {
+            // Возвращаемся к экрану авторизации
+            
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                           let rootViewController = windowScene.windows.first?.rootViewController {
-                            rootViewController.dismiss(animated: true)
+                           let window = windowScene.windows.first {
+                            window.rootViewController = AuthViewController()
+                            window.makeKeyAndVisible()
+                            //rootViewController.dismiss(animated: true)
                         }
         }) {
             Text("Выйти")
